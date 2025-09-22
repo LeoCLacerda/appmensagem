@@ -3,9 +3,9 @@ package poo.mensagens;
 import java.util.ArrayList;
 import java.util.List;
 
-import poo.mensagens.config.Admin;
-import poo.mensagens.config.Usuario;
-import poo.mensagens.servicos.UsuariosUtility;
+import poo.mensagens.usuarios.Admin;
+import poo.mensagens.usuarios.Usuario;
+import poo.mensagens.usuarios.UsuariosUtility;
 
 public class App {
 

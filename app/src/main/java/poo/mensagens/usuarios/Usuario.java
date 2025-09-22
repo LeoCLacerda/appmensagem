@@ -1,9 +1,12 @@
-package poo.mensagens.config;
+package poo.mensagens.usuarios;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import chat.Contato;
+
 public class Usuario {
+
     protected String nome;
     protected int idade;
     protected String email;
@@ -13,7 +16,9 @@ public class Usuario {
 
     private List<String> errors = new ArrayList<>();
 
-    public Usuario() { }
+    private List<Contato> Contatos = new ArrayList<>();
+
+    protected Usuario() { }
 
     // Factory
     public static Usuario criar(String nome, int idade, String email, boolean idadeVisivel, boolean emailVisivel) {
@@ -54,4 +59,19 @@ public class Usuario {
     public boolean contemErro() {
         return errors.size() > 0;
     }
+
+    public List<Contato> getTodosContatos() {
+        return Contatos;
+    }
+
+    public void setContatos(Contato... contatos) {
+        for (Contato contato : contatos) {
+            if(Contatos.contains(contato))
+            {
+                continue;
+            }
+            Contatos.add(contato);
+        }
+    }
+
 }

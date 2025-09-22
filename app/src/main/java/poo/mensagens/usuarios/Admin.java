@@ -1,4 +1,4 @@
-package poo.mensagens.config;
+package poo.mensagens.usuarios;
 
 public class Admin extends Usuario{
 
