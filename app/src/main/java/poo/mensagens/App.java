@@ -31,6 +31,10 @@ public class App {
             admin1, admin2, admin3, admin4, admin5,
             usuario1, usuario2, usuario3, usuario4);
 
+        admin1.setContatos(usuario1.getContato());
+        admin1.enviarMensagem(usuario1.getContato(), "oi");
+        admin1.enviarMensagem(usuario2.getContato(), "oi"); // vai falhar 
+
         System.out.println("Usuários Inativos:");
         for (var usuario : usuariosInativos) {
             System.out.println(usuario.getNome());
