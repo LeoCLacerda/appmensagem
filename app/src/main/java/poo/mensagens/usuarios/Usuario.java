@@ -1,13 +1,11 @@
 package poo.mensagens.usuarios;
 
 import java.util.ArrayList;
-import java.util.Dictionary;
-import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.List;
+import java.util.Map;
 
 import chat.Contato;
-import chat.Mensagem;
 
 public class Usuario {
 
@@ -27,14 +25,29 @@ public class Usuario {
 
     private List<Contato> Contatos = new ArrayList<>();
 
-    private Dictionary<Contato, List<String>> mensagensRecebidas = new Hashtable<>();
-    //private Dictionary<Contato, List<Mensagem>> mensagensEnviadas = new Hashtable<>();
+    private Map<Contato, List<String>> mensagensRecebidas = new Hashtable<>(); //Map no lugar de Dictionary para usar o método keySet()
 
-    public void receberMensagem(Contato remetente, String mensagem){
-        // verifica se a chave existe
-        // cria o contato se nao tiver
-        // adiciona a mensagem na lista desse contato
+    public void receberMensagem(Contato remetente, String mensagem) {
+    //para armazenar no "histórico"
+    List<String> historico = mensagensRecebidas.get(remetente);
+    if (historico == null) {
+        historico = new ArrayList<>();
+        mensagensRecebidas.put(remetente, historico);
     }
+    historico.add(mensagem);
+}
+
+    public void mostrarHistorico() { 
+    //permite visualizar o histórico
+    System.out.println("Histórico de mensagens de " + nome + ":");
+    for (Contato contato : mensagensRecebidas.keySet()) {
+        System.out.println("De: " + contato.getEmail());
+        for (String msg : mensagensRecebidas.get(contato)) {
+            System.out.println("  " + msg);
+        }
+    }
+}
+
 
     public void enviarMensagem(Contato destinatario, String mensagem){
     }

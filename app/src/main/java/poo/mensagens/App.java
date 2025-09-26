@@ -2,6 +2,7 @@ package poo.mensagens;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 import poo.mensagens.usuarios.Admin;
 import poo.mensagens.usuarios.Usuario;
@@ -9,11 +10,12 @@ import poo.mensagens.usuarios.UsuariosUtility;
 
 public class App {
 
-    private static List<Usuario> usuarios = new ArrayList<>();
-    private static List<Usuario> usuariosAtivos = new ArrayList<>();
-    private static List<Usuario> usuariosInativos = new ArrayList<>();
-
     public static void main(String[] args) {
+
+        List<Usuario> usuarios = new ArrayList<>();
+        List<Usuario> usuariosAtivos = new ArrayList<>();
+        List<Usuario> usuariosInativos = new ArrayList<>();
+       
         // Administradores
         var admin1 = Admin.criar("Emily", 20, "emily@gmail.com");
         var admin2 = Admin.criar("Fran", 20, "fran@gmail.com");
@@ -31,26 +33,8 @@ public class App {
             admin1, admin2, admin3, admin4, admin5,
             usuario1, usuario2, usuario3, usuario4);
 
-        admin1.setContatos(usuario1.getContato());
-        admin1.enviarMensagem(usuario1.getContato(), "oi");
-        admin1.enviarMensagem(usuario2.getContato(), "oi"); // vai falhar 
+        ChatServico chatServico = new ChatServico(usuariosAtivos, usuariosInativos);
+        chatServico.iniciar();
 
-        System.out.println("Usuários Inativos:");
-        for (var usuario : usuariosInativos) {
-            System.out.println(usuario.getNome());
-            System.out.println(String.join("\n", usuario.getErrors()));
-        }
-
-        System.out.println("Usuários Ativos:");
-        for (var usuario : usuariosAtivos) {
-            System.out.println(usuario.getNome());
-        }
-
-        System.out.println("Administradores:");
-        for (var usuario : usuarios) {
-            if(usuario instanceof Admin){
-                System.out.println(usuario.getNome());
-            }
-        }
     }
 }

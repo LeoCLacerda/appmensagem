@@ -13,7 +13,7 @@ public class Mensagem {
         this.mensagem = mensagem;
     }
 
-    public void enviar(){
-        remetente.receberMensagem(this.destinatario.getContato(), this.mensagem);
+    public void enviar(){ //getContato indica o remetente
+        destinatario.receberMensagem(this.destinatario.getContato(), mensagem);
     }
 }
